@@ -5,7 +5,7 @@ Created on Tue Nov  3 12:03:56 2026
 @author: sabin
 """
 
-w = 'HELLO'
+w = 'GRACE'
 
 def word_generator():
     pass
@@ -17,13 +17,14 @@ def guessing():
 
     if len(guess) != 5:
         if len(guess) > 5:
-            print('not accepted, too long')
-            guessing()
+            print('\nnot accepted, too long')
         if len(guess) < 5:
-            print('not accepted, too short')
-            guessing()
+            print('\nnot accepted, too short')
+        return guessing()
     else:
         return guess
+    
+    return guess
 
 
 def mechanism(answer, n, word):
@@ -32,8 +33,8 @@ def mechanism(answer, n, word):
         interface_answer=answer[0]+' '+answer[1]+' '+answer[2]+' '+answer[3]+' '+answer[4]
         
         print(f'you have {n} more try to guess the word!')
-        guess=guessing().upper()
-        
+        guess=guessing()
+     
         for i in range(5):
             if guess[i] == word[i]:
                 answer[i] = guess[i]
@@ -44,7 +45,7 @@ def mechanism(answer, n, word):
             print('you won!')
         else:
             print('\nyou lost!')
-            print(f'the word was:')
+            print('the word was:')
             interface_word=word[0]+' '+word[1]+' '+word[2]+' '+word[3]+' '+word[4]
             print(interface_word)
                   
