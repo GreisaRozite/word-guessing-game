@@ -38,10 +38,35 @@ def mechanism(answer, n, word, word_end):
         for i in range(5):
             if guess[i] == word[i]:
                 w = guess[i]
-                w_color=f'\033[92m{w}'
-                answer[i] = w_color
+                w_green=f'\033[92m{w}'
+                answer[i] = w_green
         
-        interface_answer=answer[0]+' '+answer[1]+' '+answer[2]+' '+answer[3]+' '+answer[4]
+        alt_answer = ['_','_','_','_','_']
+        for i in range(5):
+            alt_answer[i]=answer[i]
+            
+        for i in range(5):
+            for j in range(5):
+                if guess[i] == word[j]:
+                    if i == j:
+                        pass
+                    else:
+                        w = guess[i]
+                        w_yellow=f'\033[33m{w}'
+                        alt_answer[i] = w_yellow
+        
+        for i in range(5):
+            v=0
+            for j in range(5):
+                if guess[i] == word[j]:
+                        v=1
+            if v==0:
+                w=guess[i]
+                w_red=f'\033[91m{w}'
+                alt_answer[i]=w_red
+        
+        interface_answer=alt_answer[0]+' '+alt_answer[1]+' '+alt_answer[2]+' '+alt_answer[3]+' '+alt_answer[4]
+        
         print('\n'+interface_answer)
         if word_end == list(guess):
             print('you won!')
@@ -66,10 +91,34 @@ def mechanism(answer, n, word, word_end):
         for i in range(5):
             if guess[i] == word[i]:
                 w = guess[i]
-                w_color=f'\033[92m{w}'
-                answer[i] = w_color
+                w_green=f'\033[92m{w}'
+                answer[i] = w_green
         
-        interface_answer=answer[0]+' '+answer[1]+' '+answer[2]+' '+answer[3]+' '+answer[4]
+        alt_answer = ['_','_','_','_','_']
+        for i in range(5):
+            alt_answer[i]=answer[i]
+            
+        for i in range(5):
+            for j in range(5):
+                if guess[i] == word[j]:
+                    if i == j:
+                        pass
+                    else:
+                        w = guess[i]
+                        w_yellow=f'\033[33m{w}'
+                        alt_answer[i] = w_yellow
+                        
+        for i in range(5):
+            v=0
+            for j in range(5):
+                if guess[i] == word[j]:
+                        v=1
+            if v==0:
+                w=guess[i]
+                w_red=f'\033[91m{w}'
+                alt_answer[i]=w_red
+        
+        interface_answer=alt_answer[0]+' '+alt_answer[1]+' '+alt_answer[2]+' '+alt_answer[3]+' '+alt_answer[4]
         
         print('\n'+interface_answer+'\n')
         return answer
