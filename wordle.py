@@ -5,7 +5,16 @@ Created on Tue Nov  3 12:03:56 2026
 @author: sabin
 """
 
-w = 'GRACE'
+import requests
+import random
+
+url = "https://darkermango.github.io/5-Letter-words/words.json"
+response = requests.get(url)
+words = response.json()
+
+count_of_words=len(words['words'])-1
+
+
 
 def word_generator():
     pass
@@ -32,8 +41,8 @@ def mechanism(answer, n, word, word_end):
     if n == 1:
         interface_answer=answer[0]+' '+answer[1]+' '+answer[2]+' '+answer[3]+' '+answer[4]
         
-        print(f'you have {n} more try to guess the word!')
-        guess=guessing()
+        print(f'\033[0myou have {n} more try to guess the word!')
+        guess=guessing().upper()
      
         for i in range(5):
             if guess[i] == word[i]:
@@ -42,6 +51,7 @@ def mechanism(answer, n, word, word_end):
                 answer[i] = w_green
         
         alt_answer = ['_','_','_','_','_']
+        
         for i in range(5):
             alt_answer[i]=answer[i]
             
@@ -69,9 +79,9 @@ def mechanism(answer, n, word, word_end):
         
         print('\n'+interface_answer)
         if word_end == list(guess):
-            print('you won!')
+            print('\033[0myou won!')
         else:
-            print('\nyou lost!')
+            print('\033[0m\nyou lost!')
             print('the word was:')
             interface_word=word[0]+' '+word[1]+' '+word[2]+' '+word[3]+' '+word[4]
             print(interface_word)
@@ -95,14 +105,18 @@ def mechanism(answer, n, word, word_end):
                 answer[i] = w_green
         
         alt_answer = ['_','_','_','_','_']
+        
         for i in range(5):
             alt_answer[i]=answer[i]
+            
+        #locks in the green 
             
         for i in range(5):
             for j in range(5):
                 if guess[i] == word[j]:
-                    if i == j:
+                    if alt_answer[i] != '_':
                         pass
+                    #skips if already filled, is green, so no overwriting
                     else:
                         w = guess[i]
                         w_yellow=f'\033[33m{w}'
@@ -125,6 +139,10 @@ def mechanism(answer, n, word, word_end):
     
 def wordle():
     #first guess initialization:
+    number=random.randrange(count_of_words)
+    w=words['words'][number]
+    w=w.upper()
+    
     n=5
     answer = ['\033[0m_','\033[0m_','\033[0m_','\033[0m_','\033[0m_']
     word = [w[0],w[1],w[2],w[3],w[4]]
