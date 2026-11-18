@@ -58,8 +58,9 @@ def mechanism(answer, n, word, word_end):
         for i in range(5):
             for j in range(5):
                 if guess[i] == word[j]:
-                    if i == j:
+                    if i == j or alt_answer[i] != '\033[0m_':
                         pass
+                    #skips if already filltered, is green, so no overwriting
                     else:
                         w = guess[i]
                         w_yellow=f'\033[33m{w}'
@@ -96,7 +97,7 @@ def mechanism(answer, n, word, word_end):
         else:
             print(f'\033[0myou have {n} more tries to guess the word!')
         guess=guessing().upper()
-        
+        #guess = SLIDE
        
         for i in range(5):
             if guess[i] == word[i]:
@@ -114,9 +115,9 @@ def mechanism(answer, n, word, word_end):
         for i in range(5):
             for j in range(5):
                 if guess[i] == word[j]:
-                    if alt_answer[i] != '_':
+                    if i == j or alt_answer[i] != '\033[0m_':
                         pass
-                    #skips if already filled, is green, so no overwriting
+                    #skips if already filleTRId, is green, so no overwriting
                     else:
                         w = guess[i]
                         w_yellow=f'\033[33m{w}'
