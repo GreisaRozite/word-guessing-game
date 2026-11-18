@@ -27,7 +27,7 @@ def guessing():
     return guess
 
 
-def mechanism(answer, n, word):
+def mechanism(answer, n, word, word_end):
  
     if n == 1:
         interface_answer=answer[0]+' '+answer[1]+' '+answer[2]+' '+answer[3]+' '+answer[4]
@@ -37,11 +37,13 @@ def mechanism(answer, n, word):
      
         for i in range(5):
             if guess[i] == word[i]:
-                answer[i] = guess[i]
+                w = guess[i]
+                w_color=f'\033[92m{w}'
+                answer[i] = w_color
         
         interface_answer=answer[0]+' '+answer[1]+' '+answer[2]+' '+answer[3]+' '+answer[4]
         print('\n'+interface_answer)
-        if word == list(guess):
+        if word_end == list(guess):
             print('you won!')
         else:
             print('\nyou lost!')
@@ -57,12 +59,15 @@ def mechanism(answer, n, word):
             print(interface_answer)
             print(f'\nyou have {n} tries to guess the word!')
         else:
-            print(f'you have {n} more tries to guess the word!')
+            print(f'\033[0myou have {n} more tries to guess the word!')
         guess=guessing().upper()
         
+       
         for i in range(5):
             if guess[i] == word[i]:
-                answer[i] = guess[i]
+                w = guess[i]
+                w_color=f'\033[92m{w}'
+                answer[i] = w_color
         
         interface_answer=answer[0]+' '+answer[1]+' '+answer[2]+' '+answer[3]+' '+answer[4]
         
@@ -72,15 +77,16 @@ def mechanism(answer, n, word):
 def wordle():
     #first guess initialization:
     n=5
-    answer = ['_','_','_','_','_']
-    word = [w[0], w[1], w[2], w[3], w[4]]
-    
+    answer = ['\033[0m_','\033[0m_','\033[0m_','\033[0m_','\033[0m_']
+    word = [w[0],w[1],w[2],w[3],w[4]]
+    word_end = [f'\033[92m{w[0]}', f'\033[92m{w[1]}', f'\033[92m{w[2]}', f'\033[92m{w[3]}', f'\033[92m{w[4]}']
+
     while n != 0:
-        current = mechanism(answer, n, word)
+        current = mechanism(answer, n, word, word_end)
         answer = current
         n=n-1
-        if current == word:
-            print('you won!')
+        if current == word_end :
+            print('\033[00myou won!')
             break 
         
 wordle()
