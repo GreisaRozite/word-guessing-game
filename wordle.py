@@ -5,6 +5,11 @@ Created on Tue Nov  3 12:03:56 2026
 @author: sabin
 """
 
+# current running bug: multiple yellows even if answer has only one
+# example word = FUDGE if user inputs 'ENDER' both 'E's show up yellow
+# also: green carries over in display only if next one is yellow
+# example word = FUDGE user inputs FIGHT then GEESE display shows FEESE with F still locked green
+
 import requests
 import random
 
@@ -31,7 +36,11 @@ def guessing():
             print('\nnot accepted, too short')
         return guessing()
     else:
-        return guess
+        if guess in words['words']:
+            return guess
+        else:
+            print('not a valid word')
+            return guessing()
     
     return guess
 
@@ -140,9 +149,11 @@ def mechanism(answer, n, word, word_end):
     
 def wordle():
     #first guess initialization:
-    number=random.randrange(count_of_words)
-    w=words['words'][number]
-    w=w.upper()
+    #number=random.randrange(count_of_words)
+    #w=words['words'][number]
+    #w=w.upper()
+    
+    w='FUDGE'
     
     n=5
     answer = ['\033[0m_','\033[0m_','\033[0m_','\033[0m_','\033[0m_']
