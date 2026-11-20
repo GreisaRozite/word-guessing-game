@@ -21,4 +21,4 @@ Input one word at a time until you guess the word or run out of attempts. After 
 - `Red` - the answer does not contain this letter at all
 
 ## Demo:
-<img width="672" height="940" alt="wordle game terminal demo" src="https://github.com/user-attachments/assets/ba47bab0-cef6-4ae9-834c-bd86abc31aa2" />
+<img width="1138" height="916" alt="wordle game terminal demo" src="https://github.com/user-attachments/assets/41535577-5c13-4cd4-8b74-16e4f14798a8" />
