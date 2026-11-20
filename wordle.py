@@ -148,11 +148,9 @@ def mechanism(answer, n, word, word_end):
     
 def wordle():
     #first guess initialization:
-    #number=random.randrange(count_of_words)
-    #w=words['words'][number]
-    #w=w.upper()
-    
-    w='FUDGE'
+    number=random.randrange(count_of_words)
+    w=words['words'][number]
+    w=w.upper()
     
     n=5
     answer = ['\033[0m_','\033[0m_','\033[0m_','\033[0m_','\033[0m_']
