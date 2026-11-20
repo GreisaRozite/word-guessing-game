@@ -7,8 +7,6 @@ Created on Tue Nov  3 12:03:56 2026
 
 # current running bug: multiple yellows even if answer has only one
 # example word = FUDGE if user inputs 'ENDER' both 'E's show up yellow
-# also: green carries over in display only if next one is yellow
-# example word = FUDGE user inputs FIGHT then GEESE display shows FEESE with F still locked green
 
 import requests
 import random
@@ -49,6 +47,7 @@ def mechanism(answer, n, word, word_end):
  
     if n == 1:
         interface_answer=answer[0]+' '+answer[1]+' '+answer[2]+' '+answer[3]+' '+answer[4]
+        answer = ['\033[0m_','\033[0m_','\033[0m_','\033[0m_','\033[0m_']
         
         print(f'\033[0myou have {n} more try to guess the word!')
         guess=guessing().upper()
@@ -99,14 +98,14 @@ def mechanism(answer, n, word, word_end):
         
     else:
         interface_answer=answer[0]+' '+answer[1]+' '+answer[2]+' '+answer[3]+' '+answer[4]
-    
+        answer = ['\033[0m_','\033[0m_','\033[0m_','\033[0m_','\033[0m_']
+        
         if n == 5:
             print(interface_answer)
             print(f'\nyou have {n} tries to guess the word!')
         else:
             print(f'\033[0myou have {n} more tries to guess the word!')
         guess=guessing().upper()
-        #guess = SLIDE
        
         for i in range(5):
             if guess[i] == word[i]:
