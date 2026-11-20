@@ -13,6 +13,7 @@ A terminal based word guessing game in Python, inspired by the popular game 'Wor
    ```bash
    python wordle.py
    ```
+   *(Depending on your system, you may need to use `py wordle.py` or `python3 wordle.py` instead.)*
    
 ## How to Play
 Input one word at a time until you guess the word or run out of attempts. After each guess, the word is returned color coded, where the color of each letter corresponds to its status in the answer:
