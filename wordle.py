@@ -17,11 +17,6 @@ words = response.json()
 
 count_of_words=len(words['words'])-1
 
-
-
-def word_generator():
-    pass
-
 def guessing():
     print('provide a five letter word! \n')
 
@@ -41,7 +36,6 @@ def guessing():
             return guessing()
     
     return guess
-
 
 def mechanism(answer, n, word, word_end):
  
