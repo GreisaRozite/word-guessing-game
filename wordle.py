@@ -5,9 +5,6 @@ Created on Tue Nov  3 12:03:56 2026
 @author: sabin
 """
 
-# current running bug: multiple yellows even if answer has only one
-# example word = FUDGE if user inputs 'ENDER' both 'E's show up yellow
-
 import requests
 import random
 
@@ -57,6 +54,9 @@ def mechanism(answer, n, word, word_end):
         for i in range(5):
             alt_answer[i]=answer[i]
             
+        yellow_d = {}
+        #dictionary of yellow letters and counts of occurances
+        
         for i in range(5):
             for j in range(5):
                 if guess[i] == word[j]:
@@ -64,10 +64,32 @@ def mechanism(answer, n, word, word_end):
                         pass
                     #skips if already filltered, is green, so no overwriting
                     else:
-                        w = guess[i]
-                        w_yellow=f'\033[33m{w}'
-                        alt_answer[i] = w_yellow
+                        letter = word[j]
+                        count = word.count(letter) #amount of times yellow letter in word
+                        letter_yellow=f'\033[33m{letter}'
+                        alt_answer[i] = letter_yellow
+                        if letter_yellow in yellow_d:
+                            pass
+                        else:
+                            yellow_d[letter_yellow]=count
         
+        for i in yellow_d:
+            letter = i
+            count = yellow_d[i]
+            tracker = 0
+            bare_letter = letter[-1:]
+            red = f'\033[91m{bare_letter}'
+            for j, k in enumerate(alt_answer):
+                if k == letter:
+                    if tracker == count:
+                        alt_answer[j]=red
+                        tracker+=1
+                    else:
+                        tracker+=1
+                else:
+                    pass #because isnt yellow
+                       
+    
         for i in range(5):
             v=0
             for j in range(5):
@@ -114,17 +136,41 @@ def mechanism(answer, n, word, word_end):
             
         #locks in the green 
             
+        yellow_d = {}
+        #dictionary of yellow letters and counts of occurances
+        
         for i in range(5):
             for j in range(5):
                 if guess[i] == word[j]:
                     if i == j or alt_answer[i] != '\033[0m_':
                         pass
-                    #skips if already filleTRId, is green, so no overwriting
+                    #skips if already filltered, is green, so no overwriting
                     else:
-                        w = guess[i]
-                        w_yellow=f'\033[33m{w}'
-                        alt_answer[i] = w_yellow
-                        
+                        letter = word[j]
+                        count = word.count(letter) #amount of times yellow letter in word
+                        letter_yellow=f'\033[33m{letter}'
+                        alt_answer[i] = letter_yellow
+                        if letter_yellow in yellow_d:
+                            pass
+                        else:
+                            yellow_d[letter_yellow]=count
+        
+        for i in yellow_d:
+            letter = i
+            count = yellow_d[i]
+            tracker = 0
+            bare_letter = letter[-1:]
+            red = f'\033[91m{bare_letter}'
+            for j, k in enumerate(alt_answer):
+                if k == letter:
+                    if tracker == count:
+                        alt_answer[j]=red
+                        tracker+=1
+                    else:
+                        tracker+=1
+                else:
+                    pass #because isnt yellow
+                       
         for i in range(5):
             v=0
             for j in range(5):
